@@ -83,7 +83,6 @@ export default function FileUploadCompact({
         {/* Upload Button */}
         <Button
           onClick={openFileDialog}
-          size="sm"
           className={cn(isDragging && "animate-bounce")}
         >
           <PlusIcon className="h-4 w-4" />

@@ -159,7 +159,9 @@ function App() {
       try {
         const json = JSON.parse(event.target?.result as string);
         const result = DesignSystemSchema.safeParse(json);
+
         if (result.success) {
+          console.log("result", result.data);
           const convertedData = convertDesignSystemHexToHSL(result.data);
           setConvertedData(convertedData);
           // You can set state or do further processing here
@@ -198,7 +200,7 @@ function App() {
           {convertedData.variableMapString && (
             <div className="flex flex-col rounded-lg overflow-hidden">
               <div className="p-2 bg-primary flex items-center justify-between">
-                <p className="text-primary-foreground">@theme inline</p>
+                <p className="text-primary-foreground text-sm">@theme inline</p>
                 <Button
                   size={"icon"}
                   onClick={() =>
@@ -211,7 +213,7 @@ function App() {
               </div>
               <Separator />
               <ScrollArea className="p-2 bg-background max-h-[400px]">
-                <pre>{convertedData.variableMapString}</pre>
+                <pre className="text-sm">{convertedData.variableMapString}</pre>
               </ScrollArea>
             </div>
           )}
@@ -219,7 +221,7 @@ function App() {
           {convertedData.lightVariableMapString && (
             <div className="flex flex-col rounded-lg overflow-hidden">
               <div className="p-2 bg-primary flex items-center justify-between">
-                <p className="text-primary-foreground">:root</p>
+                <p className="text-primary-foreground text-sm">:root</p>
                 <Button
                   size={"icon"}
                   onClick={() =>
@@ -232,7 +234,9 @@ function App() {
               </div>
               <Separator />
               <ScrollArea className="p-2 bg-background max-h-[400px]">
-                <pre>{convertedData.lightVariableMapString}</pre>
+                <pre className="text-sm">
+                  {convertedData.lightVariableMapString}
+                </pre>
               </ScrollArea>
             </div>
           )}
@@ -240,7 +244,7 @@ function App() {
           {convertedData.darkVariableMapString && (
             <div className="flex flex-col rounded-lg overflow-hidden">
               <div className="p-2 bg-primary flex items-center justify-between">
-                <p className="text-primary-foreground">.dark</p>
+                <p className="text-primary-foreground text-sm">.dark</p>
                 <Button
                   size={"icon"}
                   onClick={() =>
@@ -253,7 +257,9 @@ function App() {
               </div>
               <Separator />
               <ScrollArea className="p-2 bg-background max-h-[400px]">
-                <pre>{convertedData.darkVariableMapString}</pre>
+                <pre className="text-sm">
+                  {convertedData.darkVariableMapString}
+                </pre>
               </ScrollArea>
             </div>
           )}
